@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="fundoToolbar" />
+    <attr name="textoToolbar" />
+    <attr name="corTitulo" />
+    <attr name="corTexto" />
+</resources>

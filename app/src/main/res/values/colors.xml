@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="cinza700">#24292f</color>
+    <color name="cinza500">#1f2328</color>
+    <color name="cinza300">#6e7781</color>
+    <color name="branco">#ffffff</color>
+</resources>

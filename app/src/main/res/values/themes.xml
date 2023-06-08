@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.Test" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="fundoToolbar">@color/cinza700</item>
+        <item name="textoToolbar">@color/branco</item>
+        <item name="corTitulo">@color/cinza500</item>
+        <item name="corTexto">@color/cinza300</item>
+        <item name="android:statusBarColor">@color/cinza700</item>
+        <item name="android:windowBackground">@color/branco</item>
+    </style>
+
+    <style name="Theme.Test" parent="Base.Theme.Test" />
+</resources>

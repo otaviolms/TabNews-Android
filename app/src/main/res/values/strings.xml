@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">TabNews</string>
+    <string name="numeroConteudo">%1$d.</string>
+    <string name="subtituloConteudo">%1$s · %2$s · %3$s · %4$s</string>
+    <plurals name="tabcoinsPlural">
+        <item quantity="zero">0 tabcoin</item>
+        <item quantity="one">%1$d tabcoin</item>
+        <item quantity="other">%1$d tabcoins</item>
+    </plurals>
+    <plurals name="comentariosPlural">
+        <item quantity="zero">sem comentários</item>
+        <item quantity="one">%1$d comentário</item>
+        <item quantity="other">%1$d comentários</item>
+    </plurals>
+    <plurals name="horasPlural">
+        <item quantity="zero">há pouco</item>
+        <item quantity="one">%1$d hora atrás</item>
+        <item quantity="other">%1$d horas atrás</item>
+    </plurals>
+</resources>
