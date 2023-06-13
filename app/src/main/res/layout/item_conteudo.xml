@@ -7,13 +7,14 @@
 
     <TextView
         android:id="@+id/txvNumero"
-        android:layout_width="0dp"
+        android:layout_width="26dp"
         android:layout_height="wrap_content"
         tools:text="1."
         android:maxLines="2"
         android:ellipsize="end"
         android:textStyle="bold"
         android:textSize="16sp"
+        android:textAlignment="textEnd"
         android:textColor="?attr/corTitulo"
         android:layout_marginTop="6dp"
         android:layout_marginHorizontal="16dp"
@@ -24,18 +25,27 @@
         android:id="@+id/txvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="You.com uma alternativa para o chat GPT e pode desbancar o google?"
-        android:maxLines="2"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="16dp"
         android:ellipsize="end"
-        android:textStyle="bold"
-        android:textSize="16sp"
+        android:maxLines="2"
         android:textColor="?attr/corTitulo"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="6dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txvNumero"
-        app:layout_constraintTop_toTopOf="@+id/txvNumero" />
+        app:layout_constraintTop_toTopOf="@+id/txvNumero"
+        tools:text="You.com uma alternativa para o chat GPT e pode desbancar o google?" />
+
+    <View
+        android:id="@+id/vTabcoins"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:background="@drawable/fundo_tabcoins"
+        app:layout_constraintBottom_toBottomOf="@+id/txvInfos"
+        app:layout_constraintStart_toStartOf="@+id/txvTitle"
+        app:layout_constraintTop_toTopOf="@+id/txvInfos" />
 
     <TextView
         android:id="@+id/txvInfos"
@@ -43,14 +53,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="6dp"
+        android:layout_marginStart="4dp"
         android:ellipsize="none"
         android:maxLines="1"
-        android:textSize="14sp"
         android:textColor="?attr/corTexto"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/txvTitle"
-        app:layout_constraintStart_toStartOf="@+id/txvTitle"
+        app:layout_constraintStart_toEndOf="@+id/vTabcoins"
         app:layout_constraintTop_toBottomOf="@+id/txvTitle"
-        tools:text="3 tabcoins · 3 comentários · fabianomoraes ·8 horas atrás" />
+        tools:text="3 · 3 comentários · fabianomoraes ·8 horas atrás" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

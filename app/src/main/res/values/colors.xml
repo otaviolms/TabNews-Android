@@ -2,7 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="cinza700">#24292f</color>
-    <color name="cinza500">#1f2328</color>
+    <color name="cinza600">#1f2328</color>
+    <color name="cinza400">#656d76</color>
     <color name="cinza300">#6e7781</color>
+    <color name="cinza100">#f6f8fa</color>
+    <color name="cinza200ap">#1f232826</color>
     <color name="branco">#ffffff</color>
+    <color name="azul300">#ddf4ff</color>
+    <color name="azul500">#0969da</color>
 </resources>

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -40,7 +41,7 @@ dependencies {
 
     implementation("androidx.fragment:fragment-ktx:1.5.7")
 
-    val nav_version = "2.5.3"
+    val nav_version = "2.6.0"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
@@ -65,6 +66,12 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    val markwon_version = "4.6.2"
+
+    implementation("io.noties.markwon:core:$markwon_version")
+    implementation("io.noties.markwon:image-glide:$markwon_version")
+    implementation("io.noties.markwon:linkify:$markwon_version")
 
 //    TODO: Remover dependência
     implementation("com.github.javafaker:javafaker:1.0.2")

@@ -3,11 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/conteudosFragment">
+    app:startDestination="@id/postsFragment">
 
     <fragment
-        android:id="@+id/conteudosFragment"
-        android:name="br.com.otaviolms.tabnews.views.conteudos.ConteudosFragment"
-        android:label="ConteudosFragment"
-        tools:layout="@layout/fragment_conteudos" />
+        android:id="@+id/postsFragment"
+        android:name="br.com.otaviolms.tabnews.views.posts.PostsFragment"
+        android:label="PostsFragment"
+        tools:layout="@layout/fragment_posts" >
+        <action
+            android:id="@+id/abrirPost"
+            app:destination="@id/postFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/postsFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/abrirListaPosts"
+            app:destination="@id/postsFragment"
+            app:launchSingleTop="true" />
+        <argument
+            android:name="relevantes"
+            app:argType="boolean"
+            android:defaultValue="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="br.com.otaviolms.tabnews.views.post.PostFragment"
+        android:label="PostFragment"
+        tools:layout="@layout/fragment_post" >
+        <argument
+            android:name="autor"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="slug"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
 </navigation>

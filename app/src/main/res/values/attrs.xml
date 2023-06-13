@@ -2,6 +2,11 @@
 <resources>
     <attr name="fundoToolbar" />
     <attr name="textoToolbar" />
+    <attr name="fundoAutor" />
     <attr name="corTitulo" />
     <attr name="corTexto" />
+    <attr name="corHoras" />
+    <attr name="corLink" />
+    <attr name="corVisitado" />
+    <attr name="corTabcoins" />
 </resources>
