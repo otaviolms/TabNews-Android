@@ -9,4 +9,5 @@
     <attr name="corLink" />
     <attr name="corVisitado" />
     <attr name="corTabcoins" />
+    <attr name="corTabcash" />
 </resources>

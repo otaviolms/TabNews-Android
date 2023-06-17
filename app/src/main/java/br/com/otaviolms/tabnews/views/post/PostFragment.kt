@@ -14,6 +14,8 @@ import br.com.otaviolms.tabnews.extensions.makeGone
 import br.com.otaviolms.tabnews.extensions.makeVisible
 import br.com.otaviolms.tabnews.extensions.pegarDrawable
 import br.com.otaviolms.tabnews.implementations.BaseFragment
+import br.com.otaviolms.tabnews.implementations.Sessao
+import br.com.otaviolms.tabnews.models.responses.UsuarioResponseModel
 import br.com.otaviolms.tabnews.utils.calcularHorasPassadas
 import io.noties.markwon.Markwon
 
@@ -33,12 +35,11 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
     }
 
     override fun setupHeader() {
-//        bnd.toolbar.navigationIcon = requireContext().pegarDrawable(R.drawable.ic_action_back)
-        bnd.toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+        bnd.imvLogoApp.setOnClickListener { voltar() }
     }
 
     override fun setupView() {
-        bnd.fab.show()
+        usuario?.let { bnd.fab.show() } ?: bnd.fab.makeGone()
     }
 
     override fun setupListeners() {
@@ -64,9 +65,10 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
         }
     }
 
-    override fun loadData() { vm.carregarPost(autor = args.autor, slug = args.slug) }
-
-    override fun setupBack() {
+    override fun setupObservers() {
+        Sessao.usuario.observe(viewLifecycleOwner) { setupView() }
     }
+
+    override fun loadData() { vm.carregarPost(autor = args.autor, slug = args.slug) }
 
 }

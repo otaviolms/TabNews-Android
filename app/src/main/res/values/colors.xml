@@ -10,4 +10,6 @@
     <color name="branco">#ffffff</color>
     <color name="azul300">#ddf4ff</color>
     <color name="azul500">#0969da</color>
+    <color name="verde500">#2da44e</color>
+    <color name="verde600">#1f883d</color>
 </resources>

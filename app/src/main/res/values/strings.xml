@@ -2,8 +2,9 @@
     <string name="app_name">TabNews</string>
     <string name="relevantes">Relevantes</string>
     <string name="recentes">Recentes</string>
-    <string name="responder">Responder</string>
     <string name="numeroConteudo">%1$d.</string>
+    <string name="tabcoins">tabcoins</string>
+    <string name="tabcash">tabcash</string>
     <string name="subtituloConteudo">%1$d · %2$s · %3$s · %4$s</string>
     <plurals name="tabcoinsPlural">
         <item quantity="zero">0 tabcoin</item>
@@ -20,4 +21,16 @@
         <item quantity="one">%1$d hora atrás</item>
         <item quantity="other">%1$d horas atrás</item>
     </plurals>
+
+    <string name="responder">Responder</string>
+    <string name="entrar">Entrar</string>
+
+    <!--  Login  -->
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="novo_no_tabnews">Novo no TabNews?</string>
+    <string name="crie_sua_conta">Crie sua conta aqui.</string>
+    <string name="esqueceu_sua_senha">Esqueceu sua senha?</string>
+    <string name="clique_aqui">Clique aqui.</string>
 </resources>

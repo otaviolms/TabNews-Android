@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.otaviolms.tabnews.R
@@ -18,7 +16,10 @@ import br.com.otaviolms.tabnews.extensions.makeVisible
 import br.com.otaviolms.tabnews.extensions.pegarDrawable
 import br.com.otaviolms.tabnews.extensions.removerFundo
 import br.com.otaviolms.tabnews.implementations.BaseFragment
-import br.com.otaviolms.tabnews.implementations.PaginationListener
+import br.com.otaviolms.tabnews.implementations.CryptHelper
+import br.com.otaviolms.tabnews.implementations.Sessao
+import br.com.otaviolms.tabnews.models.responses.UsuarioResponseModel
+import com.github.javafaker.Crypto
 
 class PostsFragment: BaseFragment<FragmentPostsBinding>() {
 
@@ -26,12 +27,14 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
 
     private val conteudosAdapter by lazy {
         ConteudosAdapter(context = requireContext()) {
-            findNavController().navigate(PostsFragmentDirections.abrirPost(it.autor, it.slug))
+//            findNavController().navigate(PostsFragmentDirections.abrirPost(it.autor, it.slug))
+            abrirDeeplink("${it.autor}/${it.slug}")
         }
     }
-    private val linearLayoutManager by lazy { LinearLayoutManager(requireContext()) }
 
     private val args: PostsFragmentArgs by navArgs()
+
+    private val strategy by lazy { if(args.strategy == "recentes") StrategyEnum.RECENTES else StrategyEnum.RELEVANTES }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,16 +46,25 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
     }
 
     override fun setupHeader() {
-        bnd.txvRelevantes.setOnClickListener { findNavController().navigate(PostsFragmentDirections.abrirListaPosts(relevantes = true)) }
-        bnd.txvRecentes.setOnClickListener { findNavController().navigate(PostsFragmentDirections.abrirListaPosts(relevantes = false)) }
+        bnd.imvLogoApp.setOnClickListener { abrirDeeplink() }
+        bnd.txvRelevantes.setOnClickListener { abrirDeeplink() }
+        bnd.txvRecentes.setOnClickListener { abrirDeeplink("recentes") }
+        usuario?.let {
+            bnd.llTabinfos.makeVisible()
+            bnd.txvEntrar.makeGone()
+            bnd.txvTabcash.text = it.tabcash.toString()
+            bnd.txvTabcoins.text = it.tabcoins.toString()
+        } ?: esconderContaToolbar()
+    }
+
+    private fun esconderContaToolbar() {
+        bnd.llTabinfos.makeGone()
+        bnd.txvEntrar.setOnClickListener { abrirDeeplink("login") }
     }
 
     override fun setupView() {
-        if(args.relevantes) definirAbaRelevantes() else definirAbaRecentes()
-        with(bnd.rcvConteudos) {
-            adapter = conteudosAdapter
-            layoutManager = linearLayoutManager
-        }
+        if(strategy == StrategyEnum.RECENTES) definirAbaRecentes() else definirAbaRelevantes()
+        bnd.rcvConteudos.adapter = conteudosAdapter
     }
 
     override fun setupListeners() {
@@ -85,6 +97,10 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
         }
     }
 
+    override fun setupObservers() {
+        Sessao.usuario.observe(viewLifecycleOwner) { setupHeader() }
+    }
+
     private fun definirAbaRelevantes() {
         bnd.txvRelevantes.background = requireContext().pegarDrawable(R.drawable.fundo_menu)
         bnd.txvRecentes.removerFundo()
@@ -95,10 +111,9 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
         bnd.txvRelevantes.removerFundo()
     }
 
-    override fun loadData() {
-        val strategy = if(args.relevantes) StrategyEnum.RELEVANTES else StrategyEnum.NOVOS
-        vm.listarPosts(page = 1, perPage = PER_PAGE, strategy = strategy)
-    }
+    override fun setupBack() { requireActivity().finish() }
+
+    override fun loadData() { vm.listarPosts(page = 1, perPage = PER_PAGE, strategy = strategy) }
 
     companion object {
         const val PER_PAGE = 20

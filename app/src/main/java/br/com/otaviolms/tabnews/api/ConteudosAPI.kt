@@ -1,13 +1,13 @@
 package br.com.otaviolms.tabnews.api
 
-import br.com.otaviolms.tabnews.models.PostResponseModel
+import br.com.otaviolms.tabnews.models.responses.PostResponseModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 
-interface TabNewsAPI {
+interface ConteudosAPI {
 
     @GET("contents")
     suspend fun listarConteudos(

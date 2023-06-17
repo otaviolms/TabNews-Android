@@ -9,7 +9,9 @@
         <item name="corLink">@color/azul500</item>
         <item name="corVisitado">@color/cinza300</item>
         <item name="corTabcoins">@color/azul500</item>
+        <item name="corTabcash">@color/verde500</item>
         <item name="android:statusBarColor">@color/cinza700</item>
         <item name="android:windowBackground">@color/cinza700</item>
+        <item name="materialButtonStyle">@style/TabNewsButton</item>
     </style>
 </resources>

@@ -3,42 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/postsFragment">
+    app:startDestination="@id/navigation_contents">
 
-    <fragment
-        android:id="@+id/postsFragment"
-        android:name="br.com.otaviolms.tabnews.views.posts.PostsFragment"
-        android:label="PostsFragment"
-        tools:layout="@layout/fragment_posts" >
-        <action
-            android:id="@+id/abrirPost"
-            app:destination="@id/postFragment"
-            app:launchSingleTop="false"
-            app:popUpTo="@id/postsFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/abrirListaPosts"
-            app:destination="@id/postsFragment"
-            app:launchSingleTop="true" />
-        <argument
-            android:name="relevantes"
-            app:argType="boolean"
-            android:defaultValue="true" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/postFragment"
-        android:name="br.com.otaviolms.tabnews.views.post.PostFragment"
-        android:label="PostFragment"
-        tools:layout="@layout/fragment_post" >
-        <argument
-            android:name="autor"
-            app:argType="string"
-            app:nullable="false" />
-        <argument
-            android:name="slug"
-            app:argType="string"
-            app:nullable="false" />
-    </fragment>
+    <navigation android:id="@+id/navigation_login"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="br.com.otaviolms.tabnews.views.login.LoginFragment"
+            android:label="LoginFragment"
+            tools:layout="@layout/fragment_login">
+            <deepLink
+                android:id="@+id/deepLinkLogin"
+                app:uri="https://www.tabnews.com.br/login" />
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/navigation_contents"
+        app:startDestination="@id/postsFragment">
+        <fragment
+            android:id="@+id/postsFragment"
+            android:name="br.com.otaviolms.tabnews.views.posts.PostsFragment"
+            android:label="PostsFragment"
+            tools:layout="@layout/fragment_posts">
+<!--            <action-->
+<!--                android:id="@+id/abrirPost"-->
+<!--                app:destination="@id/postFragment"-->
+<!--                app:launchSingleTop="false"-->
+<!--                app:popUpTo="@id/postsFragment"-->
+<!--                app:popUpToInclusive="true" />-->
+<!--            <action-->
+<!--                android:id="@+id/abrirListaPosts"-->
+<!--                app:destination="@id/postsFragment"-->
+<!--                app:launchSingleTop="true" />-->
+            <argument
+                android:name="strategy"
+                app:argType="string"
+                android:defaultValue="" />
+            <deepLink
+                android:id="@+id/deepLinkPosts"
+                app:uri="https://www.tabnews.com.br/" />
+            <deepLink
+                android:id="@+id/deepLinkPostsStrategy"
+                app:uri="https://www.tabnews.com.br/{strategy}" />
+        </fragment>
+        <fragment
+            android:id="@+id/postFragment"
+            android:name="br.com.otaviolms.tabnews.views.post.PostFragment"
+            android:label="PostFragment"
+            tools:layout="@layout/fragment_post">
+            <argument
+                android:name="autor"
+                app:argType="string"
+                app:nullable="false" />
+            <argument
+                android:name="slug"
+                app:argType="string"
+                app:nullable="false" />
+            <deepLink
+                android:id="@+id/deepLink4"
+                app:uri="https://www.tabnews.com.br/{autor}/{slug}" />
+        </fragment>
+    </navigation>
 
 </navigation>

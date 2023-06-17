@@ -1,14 +1,13 @@
 package br.com.otaviolms.tabnews.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import br.com.otaviolms.tabnews.R
 import br.com.otaviolms.tabnews.databinding.ItemConteudoBinding
-import br.com.otaviolms.tabnews.models.PostResponseModel
+import br.com.otaviolms.tabnews.models.responses.PostResponseModel
 import br.com.otaviolms.tabnews.utils.calcularHorasPassadas
 
 class ConteudosAdapter(
