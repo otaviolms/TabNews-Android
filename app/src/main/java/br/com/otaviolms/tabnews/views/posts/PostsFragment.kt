@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.otaviolms.tabnews.R
 import br.com.otaviolms.tabnews.adapters.ConteudosAdapter
 import br.com.otaviolms.tabnews.databinding.FragmentPostsBinding
@@ -17,6 +19,7 @@ import br.com.otaviolms.tabnews.extensions.pegarDrawable
 import br.com.otaviolms.tabnews.extensions.removerFundo
 import br.com.otaviolms.tabnews.implementations.BaseFragment
 import br.com.otaviolms.tabnews.implementations.CryptHelper
+import br.com.otaviolms.tabnews.implementations.PaginationListener
 import br.com.otaviolms.tabnews.implementations.Sessao
 import br.com.otaviolms.tabnews.models.responses.UsuarioResponseModel
 import com.github.javafaker.Crypto
@@ -35,6 +38,10 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
     private val args: PostsFragmentArgs by navArgs()
 
     private val strategy by lazy { if(args.strategy == "recentes") StrategyEnum.RECENTES else StrategyEnum.RELEVANTES }
+
+    private val paginationListener = PaginationListener { pagina ->
+        vm.listarPosts(page = pagina, perPage = PER_PAGE, strategy = strategy, novaPagina = true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,11 +76,7 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
 
     override fun setupListeners() {
         bnd.srlConteudos.setOnRefreshListener { this.loadData() }
-//        bnd.rcvConteudos.addOnScrollListener(
-//            PaginationListener(layoutManager = linearLayoutManager) { pagina ->
-//                vm.listarPosts(page = pagina + 1, novaPagina = true)
-//            }
-//        )
+        bnd.rcvConteudos.addOnScrollListener(paginationListener)
     }
 
     override fun setupUiState() {
@@ -88,6 +91,7 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
                     bnd.txvFalha.makeGone()
                     bnd.srlConteudos.isRefreshing = false
                     conteudosAdapter.adicionarConteudo(uiState.conteudo)
+                    paginationListener.liberarGatilho()
                 }
                 is PostsUiState.Erro -> {
                     bnd.srlConteudos.makeGone()

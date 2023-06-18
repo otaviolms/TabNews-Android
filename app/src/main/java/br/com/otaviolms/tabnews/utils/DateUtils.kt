@@ -10,5 +10,7 @@ fun calcularHorasPassadas(data: String): Int {
     val dataFornecida = ZonedDateTime.parse(data, formato)
     val dataAtual = LocalDateTime.now().atZone(dataFornecida.zone)
     val diferenca = Duration.between(dataFornecida, dataAtual)
-    return diferenca.toHours().toInt()
+    val resultado = diferenca.toHours().toInt()
+    return if(resultado == 0 || resultado <= 0) 0
+    else diferenca.toHours().toInt()
 }

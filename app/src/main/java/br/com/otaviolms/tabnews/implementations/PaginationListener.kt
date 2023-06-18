@@ -1,33 +1,31 @@
 package br.com.otaviolms.tabnews.implementations
 
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
 class PaginationListener(
-    private val layoutManager: LinearLayoutManager,
-    private val carregarMais: (pagina: Int) -> Unit
+    private val carregarMais: (proximaPagina: Int) -> Unit
 ) : RecyclerView.OnScrollListener() {
 
-    private var isLoading = false
-
+    private var loadProximaPagina = false
     private var paginaAtual = 1
-
-    private var offset = 3
+    private var offset = 5
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
 
-        val totalItens: Int = layoutManager.childCount
-        val ultimoItemVisivel: Int = layoutManager.findLastCompletelyVisibleItemPosition()
+        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+        val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+        val totalItemCount = layoutManager.itemCount
 
-        if (ultimoItemVisivel >= totalItens - offset) carregarMaisItens()
+        if (totalItemCount - lastVisibleItemPosition <= offset && !loadProximaPagina) {
+            loadProximaPagina = true
+            carregarMais.invoke(++paginaAtual)
+        }
     }
 
-    private fun carregarMaisItens() {
-        isLoading = true
-        paginaAtual++
-        carregarMais.invoke(paginaAtual)
-    }
+    fun liberarGatilho() { loadProximaPagina = false }
 
 }

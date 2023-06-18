@@ -5,6 +5,7 @@
         <item name="corTitulo">@color/cinza600</item>
         <item name="corTexto">@color/cinza300</item>
         <item name="corHoras">@color/cinza400</item>
+        <item name="corAutor">@color/azul500</item>
         <item name="fundoAutor">@color/azul300</item>
         <item name="corLink">@color/azul500</item>
         <item name="corVisitado">@color/cinza300</item>

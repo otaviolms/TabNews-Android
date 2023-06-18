@@ -1,17 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.TabNews" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="fundoToolbar">@color/cinza700</item>
+        <item name="fundoToolbar">@color/cinza800</item>
         <item name="textoToolbar">@color/branco</item>
-        <item name="corTitulo">@color/branco</item>
+        <item name="corTitulo">@color/cinza200</item>
         <item name="corTexto">@color/cinza300</item>
         <item name="corHoras">@color/cinza400</item>
-        <item name="fundoAutor">@color/azul300</item>
+        <item name="corAutor">@color/azul400</item>
+        <item name="fundoAutor">@color/azul400ap</item>
         <item name="corLink">@color/azul500</item>
         <item name="corVisitado">@color/cinza300</item>
         <item name="corTabcoins">@color/azul500</item>
         <item name="corTabcash">@color/verde500</item>
-        <item name="android:statusBarColor">@color/cinza700</item>
-        <item name="android:windowBackground">@color/cinza700</item>
+        <item name="android:statusBarColor">@color/cinza800</item>
+        <item name="android:windowBackground">@color/cinza900</item>
         <item name="materialButtonStyle">@style/TabNewsButton</item>
     </style>
 </resources>

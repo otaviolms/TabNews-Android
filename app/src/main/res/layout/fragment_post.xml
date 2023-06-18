@@ -56,7 +56,7 @@
                 android:background="@drawable/fundo_autor"
                 android:paddingHorizontal="6dp"
                 android:paddingVertical="2dp"
-                android:textColor="?corLink"
+                android:textColor="?corAutor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="xmatheus" />
