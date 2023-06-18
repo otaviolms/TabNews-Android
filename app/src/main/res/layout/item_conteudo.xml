@@ -21,6 +21,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imvComentario"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/comentario"
+        tools:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/txvNumero"
+        app:layout_constraintBottom_toBottomOf="@+id/txvNumero"
+        app:layout_constraintStart_toEndOf="@+id/txvNumero"
+        android:layout_marginStart="6dp" />
+
     <TextView
         android:id="@+id/txvTitle"
         android:layout_width="0dp"
@@ -34,17 +45,18 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txvNumero"
         app:layout_constraintTop_toTopOf="@+id/txvNumero"
+        app:layout_constraintStart_toEndOf="@+id/imvComentario"
         tools:text="You.com uma alternativa para o chat GPT e pode desbancar o google?" />
 
     <View
         android:id="@+id/vTabcoins"
         android:layout_width="8dp"
         android:layout_height="8dp"
+        app:layout_goneMarginStart="6dp"
         android:background="@drawable/fundo_tabcoins"
         app:layout_constraintBottom_toBottomOf="@+id/txvInfos"
-        app:layout_constraintStart_toStartOf="@+id/txvTitle"
+        app:layout_constraintStart_toStartOf="@+id/imvComentario"
         app:layout_constraintTop_toTopOf="@+id/txvInfos" />
 
     <TextView

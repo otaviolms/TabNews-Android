@@ -1,23 +1,25 @@
 package br.com.otaviolms.tabnews.views.post
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.otaviolms.tabnews.R
 import br.com.otaviolms.tabnews.databinding.FragmentPostBinding
 import br.com.otaviolms.tabnews.extensions.makeGone
-import br.com.otaviolms.tabnews.extensions.makeVisible
-import br.com.otaviolms.tabnews.extensions.pegarDrawable
 import br.com.otaviolms.tabnews.implementations.BaseFragment
 import br.com.otaviolms.tabnews.implementations.Sessao
-import br.com.otaviolms.tabnews.models.responses.UsuarioResponseModel
 import br.com.otaviolms.tabnews.utils.calcularHorasPassadas
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
 import io.noties.markwon.Markwon
+import io.noties.markwon.image.AsyncDrawable
+import io.noties.markwon.image.glide.GlideImagesPlugin
+import io.noties.markwon.image.glide.GlideImagesPlugin.GlideStore
+
 
 class PostFragment: BaseFragment<FragmentPostBinding>() {
 
@@ -43,6 +45,13 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
     }
 
     override fun setupListeners() {
+        var previousScrollY = 0
+        bnd.scvConteudo.viewTreeObserver.addOnScrollChangedListener {
+            val scrollY = bnd.scvConteudo.scrollY
+            if (scrollY < previousScrollY && bnd.fab.visibility == View.GONE) bnd.fab.show()
+            else if (scrollY > previousScrollY && bnd.fab.visibility == View.VISIBLE) bnd.fab.hide()
+            previousScrollY = scrollY
+        }
     }
 
     override fun setupUiState() {
@@ -55,8 +64,12 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
                         bnd.txvTitulo.text = titulo
                         bnd.txvConteudo.text = body
 
-                        val markwon = Markwon.create(requireContext())
-                        markwon.setMarkdown(bnd.txvConteudo, body ?: "")
+                        bnd.txvAutor.setOnClickListener { abrirDeeplink(autor) }
+
+                        Markwon.builder(requireContext())
+                            .usePlugin(GlideImagesPlugin.create(requireContext()))
+                            .build()
+                            .setMarkdown(bnd.txvConteudo, body ?: "")
                     }
                 }
                 is PostUiState.Erro -> {

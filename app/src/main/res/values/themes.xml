@@ -8,7 +8,10 @@
         <item name="corAutor">@color/azul500</item>
         <item name="fundoAutor">@color/azul300</item>
         <item name="corLink">@color/azul500</item>
-        <item name="corVisitado">@color/cinza300</item>
+        <item name="fundoAvatar">@color/cinza150</item>
+        <item name="corAvatar">@color/cinza800</item>
+        <item name="bordaAvatar">@color/transparent</item>
+        <item name="corVisitado">@color/cinza150</item>
         <item name="corTabcoins">@color/azul500</item>
         <item name="corTabcash">@color/verde500</item>
         <item name="android:statusBarColor">@color/cinza700</item>

@@ -1,14 +1,17 @@
 package br.com.otaviolms.tabnews.adapters
 
 import android.content.Context
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import br.com.otaviolms.tabnews.R
 import br.com.otaviolms.tabnews.databinding.ItemConteudoBinding
+import br.com.otaviolms.tabnews.extensions.makeGone
+import br.com.otaviolms.tabnews.extensions.makeVisible
 import br.com.otaviolms.tabnews.models.responses.PostResponseModel
-import br.com.otaviolms.tabnews.utils.calcularHorasPassadas
+import br.com.otaviolms.tabnews.utils.montarStringTempoPassado
 
 class ConteudosAdapter(
     private val context: Context,
@@ -24,8 +27,7 @@ class ConteudosAdapter(
     override fun onBindViewHolder(holder: ConteudoItemViewHolder, position: Int) {
         with(dataSet[position]) {
             val stringComentarios = context.resources.getQuantityString(R.plurals.comentariosPlural, comentarios, comentarios)
-//            val stringHora = "HORAS ATRÁS"
-            val stringHora = context.resources.getQuantityString(R.plurals.horasPlural, calcularHorasPassadas(publishedAt), calcularHorasPassadas(publishedAt))
+            val dataPublicacao = montarStringTempoPassado(context, publishedAt)
 
             holder.bnd.txvNumero.text = context.getString(R.string.numeroConteudo, (position + 1))
             holder.bnd.txvTitle.text = titulo
@@ -34,8 +36,17 @@ class ConteudosAdapter(
                 tabcoins, // TABCOINS
                 stringComentarios, // COMENTÁRIOS
                 autor, // USERNAME
-                stringHora // HORAS
+                dataPublicacao // HORAS
             )
+
+            if(titulo.isNullOrEmpty()) holder.bnd.txvTitle.text = body
+            if(parentId != null) {
+                holder.bnd.imvComentario.makeVisible()
+                holder.bnd.txvTitle.setTypeface(null, Typeface.ITALIC)
+            } else {
+                holder.bnd.imvComentario.makeGone()
+                holder.bnd.txvTitle.setTypeface(null, Typeface.BOLD)
+            }
 
             holder.bnd.root.setOnClickListener { onClick.invoke(this) }
         }

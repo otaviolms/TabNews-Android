@@ -1,6 +1,7 @@
 package br.com.otaviolms.tabnews.implementations
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -62,6 +63,7 @@ abstract class BaseFragment<BINDING: ViewBinding>: Fragment() {
     protected fun voltar() { findNavController().popBackStack() }
 
     protected fun abrirDeeplink(deeplink: String = "") {
+        Log.i("LogTabNews", "Abrir deeplink: $BASE_URL$deeplink")
         findNavController().navigate(NavDeepLinkRequest.Builder.fromUri("$BASE_URL$deeplink".toUri()).build())
     }
 

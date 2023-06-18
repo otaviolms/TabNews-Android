@@ -24,16 +24,6 @@
             android:name="br.com.otaviolms.tabnews.views.posts.PostsFragment"
             android:label="PostsFragment"
             tools:layout="@layout/fragment_posts">
-<!--            <action-->
-<!--                android:id="@+id/abrirPost"-->
-<!--                app:destination="@id/postFragment"-->
-<!--                app:launchSingleTop="false"-->
-<!--                app:popUpTo="@id/postsFragment"-->
-<!--                app:popUpToInclusive="true" />-->
-<!--            <action-->
-<!--                android:id="@+id/abrirListaPosts"-->
-<!--                app:destination="@id/postsFragment"-->
-<!--                app:launchSingleTop="true" />-->
             <argument
                 android:name="strategy"
                 app:argType="string"
@@ -43,7 +33,7 @@
                 app:uri="https://www.tabnews.com.br/" />
             <deepLink
                 android:id="@+id/deepLinkPostsStrategy"
-                app:uri="https://www.tabnews.com.br/{strategy}" />
+                app:uri="https://www.tabnews.com.br/?strategy={strategy}" />
         </fragment>
         <fragment
             android:id="@+id/postFragment"
@@ -59,8 +49,24 @@
                 app:argType="string"
                 app:nullable="false" />
             <deepLink
-                android:id="@+id/deepLink4"
+                android:id="@+id/deepLinkPost"
                 app:uri="https://www.tabnews.com.br/{autor}/{slug}" />
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/navigation_user"
+        app:startDestination="@id/userFragment">
+        <fragment
+            android:id="@+id/userFragment"
+            android:name="br.com.otaviolms.tabnews.views.user.UserFragment"
+            android:label="UserFragment"
+            tools:layout="@layout/fragment_user">
+            <argument
+                android:name="username"
+                app:argType="string"
+                app:nullable="false" />
+            <deepLink
+                android:id="@+id/deepLinkUser"
+                app:uri="https://www.tabnews.com.br/{username}" />
         </fragment>
     </navigation>
 

@@ -7,9 +7,11 @@
     <color name="cinza600">#1f2328</color>
     <color name="cinza400">#656d76</color>
     <color name="cinza300">#6e7781</color>
-    <color name="cinza200">#e6edf3</color>
-    <color name="cinza100">#f6f8fa</color>
     <color name="cinza200ap">#1f232826</color>
+    <color name="cinza200">#e6edf3</color>
+    <color name="cinza150">#ebecf0</color>
+    <color name="cinza100ap">#1AF0F6FC</color>
+    <color name="cinza100">#f6f8fa</color>
     <color name="branco">#ffffff</color>
     <color name="azul300">#ddf4ff</color>
     <color name="azul400ap">#1A388BFD</color>
@@ -17,4 +19,5 @@
     <color name="azul500">#0969da</color>
     <color name="verde500">#2da44e</color>
     <color name="verde600">#1f883d</color>
+    <color name="transparent">#00000000</color>
 </resources>

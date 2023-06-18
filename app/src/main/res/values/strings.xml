@@ -21,6 +21,12 @@
         <item quantity="one">%1$d hora atrás</item>
         <item quantity="other">%1$d horas atrás</item>
     </plurals>
+    <plurals name="diasPlural">
+        <item quantity="zero">hoje</item>
+        <item quantity="one">ontem</item>
+        <item quantity="many">alguns dias</item>
+        <item quantity="other">%1$d dias atrás</item>
+    </plurals>
 
     <string name="responder">Responder</string>
     <string name="entrar">Entrar</string>

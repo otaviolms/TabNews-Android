@@ -22,4 +22,9 @@ interface ConteudosAPI {
         @Path("slug") slug: String,
     ) : Response<PostResponseModel>
 
+    @GET("contents/{username}")
+    suspend fun listarPostsUsuario(
+        @Path("username") username: String,
+    ) : Response<ArrayList<PostResponseModel>>
+
 }

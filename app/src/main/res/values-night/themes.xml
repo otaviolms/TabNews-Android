@@ -8,6 +8,9 @@
         <item name="corAutor">@color/azul400</item>
         <item name="fundoAutor">@color/azul400ap</item>
         <item name="corLink">@color/azul500</item>
+        <item name="fundoAvatar">@color/cinza800</item>
+        <item name="corAvatar">@color/cinza150</item>
+        <item name="bordaAvatar">@color/cinza150</item>
         <item name="corVisitado">@color/cinza300</item>
         <item name="corTabcoins">@color/azul500</item>
         <item name="corTabcash">@color/verde500</item>

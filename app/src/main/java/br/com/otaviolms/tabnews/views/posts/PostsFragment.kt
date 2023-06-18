@@ -28,19 +28,15 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
 
     private val vm: PostsViewModel by viewModels()
 
-    private val conteudosAdapter by lazy {
-        ConteudosAdapter(context = requireContext()) {
-//            findNavController().navigate(PostsFragmentDirections.abrirPost(it.autor, it.slug))
-            abrirDeeplink("${it.autor}/${it.slug}")
-        }
-    }
-
     private val args: PostsFragmentArgs by navArgs()
-
     private val strategy by lazy { if(args.strategy == "recentes") StrategyEnum.RECENTES else StrategyEnum.RELEVANTES }
 
     private val paginationListener = PaginationListener { pagina ->
         vm.listarPosts(page = pagina, perPage = PER_PAGE, strategy = strategy, novaPagina = true)
+    }
+
+    private val conteudosAdapter by lazy {
+        ConteudosAdapter(context = requireContext()) { abrirDeeplink("${it.autor}/${it.slug}") }
     }
 
     override fun onCreateView(
@@ -55,9 +51,10 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
     override fun setupHeader() {
         bnd.imvLogoApp.setOnClickListener { abrirDeeplink() }
         bnd.txvRelevantes.setOnClickListener { abrirDeeplink() }
-        bnd.txvRecentes.setOnClickListener { abrirDeeplink("recentes") }
+        bnd.txvRecentes.setOnClickListener { abrirDeeplink("?strategy=recentes") }
         usuario?.let {
             bnd.llTabinfos.makeVisible()
+            bnd.imvAvatar.makeVisible()
             bnd.txvEntrar.makeGone()
             bnd.txvTabcash.text = it.tabcash.toString()
             bnd.txvTabcoins.text = it.tabcoins.toString()
@@ -66,6 +63,7 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
 
     private fun esconderContaToolbar() {
         bnd.llTabinfos.makeGone()
+        bnd.imvAvatar.makeGone()
         bnd.txvEntrar.setOnClickListener { abrirDeeplink("login") }
     }
 
@@ -77,6 +75,9 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
     override fun setupListeners() {
         bnd.srlConteudos.setOnRefreshListener { this.loadData() }
         bnd.rcvConteudos.addOnScrollListener(paginationListener)
+        bnd.imvAvatar.setOnClickListener {
+            usuario?.username?.let { username -> abrirDeeplink(username) }
+        }
     }
 
     override fun setupUiState() {

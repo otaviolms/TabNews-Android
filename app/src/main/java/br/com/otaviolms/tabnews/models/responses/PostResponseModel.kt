@@ -18,6 +18,6 @@ data class PostResponseModel(
     @JsonProperty("source_url") val sourceUrl: Any?,
     @JsonProperty("status") val status: String,
     @JsonProperty("tabcoins") val tabcoins: Int,
-    @JsonProperty("title") val titulo: String,
+    @JsonProperty("title") val titulo: String?,
     @JsonProperty("updated_at") val updatedAt: String
 )

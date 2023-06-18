@@ -4,6 +4,9 @@
     <attr name="textoToolbar" />
     <attr name="corAutor" />
     <attr name="fundoAutor" />
+    <attr name="fundoAvatar" />
+    <attr name="corAvatar" />
+    <attr name="bordaAvatar" />
     <attr name="corTitulo" />
     <attr name="corTexto" />
     <attr name="corHoras" />
