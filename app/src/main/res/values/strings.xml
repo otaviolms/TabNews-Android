@@ -28,6 +28,8 @@
         <item quantity="other">%1$d dias atrás</item>
     </plurals>
 
+    <string name="achei_relevante">Achei relevante</string>
+    <string name="nao_achei_relevante">Não achei relevante</string>
     <string name="responder">Responder</string>
     <string name="entrar">Entrar</string>
 

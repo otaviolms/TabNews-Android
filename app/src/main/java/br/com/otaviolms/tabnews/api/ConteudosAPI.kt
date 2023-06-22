@@ -22,6 +22,12 @@ interface ConteudosAPI {
         @Path("slug") slug: String,
     ) : Response<PostResponseModel>
 
+    @GET("contents/{autor}/{slug}/children")
+    suspend fun carregarComentarios(
+        @Path("autor") autor: String,
+        @Path("slug") slug: String,
+    ) : Response<ArrayList<PostResponseModel>>
+
     @GET("contents/{username}")
     suspend fun listarPostsUsuario(
         @Path("username") username: String,

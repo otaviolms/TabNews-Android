@@ -14,6 +14,7 @@
         <item name="corVisitado">@color/cinza300</item>
         <item name="corTabcoins">@color/azul500</item>
         <item name="corTabcash">@color/verde500</item>
+        <item name="linhaHierarquia">@color/cinza300ap</item>
         <item name="android:statusBarColor">@color/cinza800</item>
         <item name="android:windowBackground">@color/cinza900</item>
         <item name="materialButtonStyle">@style/TabNewsButton</item>

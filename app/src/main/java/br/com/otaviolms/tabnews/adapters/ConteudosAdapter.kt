@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import br.com.otaviolms.tabnews.R
 import br.com.otaviolms.tabnews.databinding.ItemConteudoBinding
+import br.com.otaviolms.tabnews.databinding.ItemPostsBinding
 import br.com.otaviolms.tabnews.extensions.makeGone
 import br.com.otaviolms.tabnews.extensions.makeVisible
 import br.com.otaviolms.tabnews.models.responses.PostResponseModel
@@ -22,7 +23,7 @@ class ConteudosAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ) = ConteudoItemViewHolder(ItemConteudoBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    ) = ConteudoItemViewHolder(ItemPostsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ConteudoItemViewHolder, position: Int) {
         with(dataSet[position]) {
@@ -55,7 +56,7 @@ class ConteudosAdapter(
 
     override fun getItemCount() = dataSet.size
 
-    inner class ConteudoItemViewHolder(val bnd: ItemConteudoBinding): RecyclerView.ViewHolder(bnd.root)
+    inner class ConteudoItemViewHolder(val bnd: ItemPostsBinding): RecyclerView.ViewHolder(bnd.root)
 
     fun definirConteudo(itens: ArrayList<PostResponseModel>) {
         dataSet = itens

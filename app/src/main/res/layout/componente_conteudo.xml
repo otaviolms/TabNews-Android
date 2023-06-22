@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/txvAutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/fundo_autor"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="2dp"
+        android:textColor="?corAutor"
+        android:maxLines="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="xmatheus" />
+
+    <TextView
+        android:id="@+id/txvData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="?corHoras"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@+id/txvAutor"
+        app:layout_constraintEnd_toStartOf="@+id/imvBaixo"
+        app:layout_constraintStart_toEndOf="@+id/txvAutor"
+        app:layout_constraintTop_toTopOf="@+id/txvAutor"
+        tools:text="1 dia atrás" />
+
+    <TextView
+        android:id="@+id/txvTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:textColor="?corTitulo"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txvAutor"
+        tools:text="Como meu bot do twitter alcançou 300k de impressões sem gastar nada" />
+
+    <TextView
+        android:id="@+id/txvConteudo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txvTitulo"
+        tools:text="Introdução
+Como bom programador e entusiasta de academia, decidi criar um bot que monitorasse as creatinas disponíveis na Growth, uma loja de suplementos. O meu objetivo era ter esse serviço de maneira gratuita e receber as notificações em alguma rede social, pela conveniência.
+
+https://twitter.com/tem_creatina
+
+O que aconteceu com o bot em 3 meses de funcionamento?
+Para a minha surpresa, muitas pessoas não conseguiam comprar creatina, pois o estoque sempre se esgotava muito rápido. O resultado disso foi um impressionante número de 300 mil impressões em tweets nos últimos 91 dias, além de muitos likes e retweets. E o custo total da aplicação foi de R$ 0.
+
+(o gasto com creatina foi de uns R$ 300 hehehe)" />
+
+    <ImageView
+        android:id="@+id/imvBaixo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txvTabCoins"
+        app:layout_constraintEnd_toStartOf="@+id/txvTabCoins"
+        app:layout_constraintTop_toTopOf="@+id/txvTabCoins"
+        app:srcCompat="@drawable/ic_baixo"
+        app:tint="?corHoras" />
+
+    <TextView
+        android:id="@+id/txvTabCoins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="2"
+        android:maxLines="1"
+        android:textColor="?corLink"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imvCima"
+        app:layout_constraintEnd_toStartOf="@+id/imvCima"
+        app:layout_constraintTop_toTopOf="@+id/imvCima" />
+
+    <ImageView
+        android:id="@+id/imvCima"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txvData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txvData"
+        app:srcCompat="@drawable/ic_cima"
+        app:tint="?corHoras" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

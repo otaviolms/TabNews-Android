@@ -7,14 +7,14 @@ import java.time.LocalDateTime
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
-fun calcularHorasPassadas(data: String): Int {
+fun calcularHorasPassadas(data: String): Long {
     val formato = DateTimeFormatter.ISO_DATE_TIME
     val dataFornecida = ZonedDateTime.parse(data, formato)
     val dataAtual = LocalDateTime.now().atZone(dataFornecida.zone)
     val diferenca = Duration.between(dataFornecida, dataAtual)
     val resultado = diferenca.toHours().toInt()
     return if(resultado == 0 || resultado <= 0) 0
-    else diferenca.toHours().toInt()
+    else diferenca.toHours()
 }
 
 fun calcularDiasPassados(data: String): Int {
@@ -24,16 +24,17 @@ fun calcularDiasPassados(data: String): Int {
     val diferenca = Duration.between(dataFornecida, dataAtual)
     val resultado = diferenca.toDays().toInt()
     return if(resultado == 0 || resultado <= 0) 0
-    else diferenca.toHours().toInt()
+    else diferenca.toDays().toInt()
 }
 
 fun montarStringTempoPassado(context: Context, data: String): String {
     val horasPassadas = calcularHorasPassadas(data)
-    if(horasPassadas < 24) {
-        return context.resources.getQuantityString(R.plurals.horasPlural, horasPassadas, horasPassadas)
-    } else {
-        val diasPassados = calcularDiasPassados(data)
-        return context.resources.getQuantityString(R.plurals.diasPlural, diasPassados, diasPassados)
+    return when{
+        horasPassadas < 1.0 -> context.resources.getQuantityString(R.plurals.horasPlural, 0, 0)
+        horasPassadas < 24.0 -> context.resources.getQuantityString(R.plurals.horasPlural, horasPassadas.toInt(), horasPassadas.toInt())
+        else -> {
+            val diasPassados = calcularDiasPassados(data)
+            context.resources.getQuantityString(R.plurals.diasPlural, diasPassados, diasPassados)
+        }
     }
-
 }

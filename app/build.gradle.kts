@@ -71,10 +71,11 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     val markwon_version = "4.6.2"
-
     implementation("io.noties.markwon:core:$markwon_version")
     implementation("io.noties.markwon:image-glide:$markwon_version")
     implementation("io.noties.markwon:linkify:$markwon_version")
+
+    implementation("nl.dionsegijn:konfetti-xml:2.0.2")
 
 //    TODO: Remover dependência
     implementation("com.github.javafaker:javafaker:1.0.2")

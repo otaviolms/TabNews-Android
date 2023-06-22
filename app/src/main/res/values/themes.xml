@@ -14,6 +14,7 @@
         <item name="corVisitado">@color/cinza150</item>
         <item name="corTabcoins">@color/azul500</item>
         <item name="corTabcash">@color/verde500</item>
+        <item name="linhaHierarquia">@color/cinza300ap</item>
         <item name="android:statusBarColor">@color/cinza700</item>
         <item name="android:windowBackground">@color/branco</item>
         <item name="materialButtonStyle">@style/TabNewsButton</item>
@@ -23,6 +24,16 @@
         <item name="android:backgroundTint">@color/verde600</item>
 <!--        <item name="bord"-->
         <item name="android:buttonCornerRadius">6dp</item>
+    </style>
+
+    <style name="IconFabTheme" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="iconPadding">4dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="collapsedSize">36dp</item>
+        <item name="iconSize">24dp</item>
+        <item name="backgroundTint">?corTexto</item>
+        <item name="iconTint">?textoToolbar</item>
     </style>
 
     <style name="Theme.TabNews" parent="Base.Theme.TabNews" />

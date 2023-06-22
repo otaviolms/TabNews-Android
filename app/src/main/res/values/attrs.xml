@@ -14,4 +14,5 @@
     <attr name="corVisitado" />
     <attr name="corTabcoins" />
     <attr name="corTabcash" />
+    <attr name="linhaHierarquia" />
 </resources>

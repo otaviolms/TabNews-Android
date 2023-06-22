@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.otaviolms.tabnews.R
 import br.com.otaviolms.tabnews.adapters.ConteudosAdapter
+import br.com.otaviolms.tabnews.databinding.FragmentPostBinding
 import br.com.otaviolms.tabnews.databinding.FragmentPostsBinding
 import br.com.otaviolms.tabnews.enums.StrategyEnum
 import br.com.otaviolms.tabnews.extensions.makeGone
@@ -39,14 +40,8 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
         ConteudosAdapter(context = requireContext()) { abrirDeeplink("${it.autor}/${it.slug}") }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPostsBinding.inflate(inflater, container, false)
-        return bnd.root
-    }
+    override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
+        FragmentPostsBinding.inflate(inflater, container, false)
 
     override fun setupHeader() {
         bnd.imvLogoApp.setOnClickListener { abrirDeeplink() }
@@ -64,6 +59,7 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
     private fun esconderContaToolbar() {
         bnd.llTabinfos.makeGone()
         bnd.imvAvatar.makeGone()
+        bnd.txvEntrar.makeVisible()
         bnd.txvEntrar.setOnClickListener { abrirDeeplink("login") }
     }
 

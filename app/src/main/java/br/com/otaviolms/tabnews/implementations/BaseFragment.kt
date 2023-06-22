@@ -3,7 +3,9 @@ package br.com.otaviolms.tabnews.implementations
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -23,12 +25,20 @@ import br.com.otaviolms.tabnews.models.responses.UsuarioResponseModel
  */
 abstract class BaseFragment<BINDING: ViewBinding>: Fragment() {
 
-    protected var _binding: BINDING? = null
-    protected val bnd
-        get() = _binding!!
+    protected lateinit var bnd: BINDING
+        private set
 
     protected val usuario: UsuarioResponseModel?
         get() = Sessao.usuario.value
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        bnd = inflateBinding(inflater, container)
+        return bnd.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,6 +51,7 @@ abstract class BaseFragment<BINDING: ViewBinding>: Fragment() {
         this.loadData()
     }
 
+    protected abstract fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?): BINDING
     protected open fun setupHeader() {}
     protected open fun setupView() {}
     protected open fun setupListeners() {}

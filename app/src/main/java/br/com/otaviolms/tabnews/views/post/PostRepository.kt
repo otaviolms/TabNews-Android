@@ -15,4 +15,9 @@ class PostRepository(
         slug: String,
     ) = chamarApi { api.carregarPost(autor, slug) }
 
+    suspend fun carregarComentarios(
+        autor: String,
+        slug: String,
+    ) = chamarApi { api.carregarComentarios(autor, slug) }
+
 }

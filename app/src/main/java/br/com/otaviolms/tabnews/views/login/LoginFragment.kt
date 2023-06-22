@@ -29,14 +29,8 @@ class LoginFragment: BaseFragment<FragmentLoginBinding>() {
     private val senhaDigitada: String
         get() = bnd.edtSenha.text.toString()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return bnd.root
-    }
+    override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
+        FragmentLoginBinding.inflate(inflater, container, false)
 
     override fun setupListeners() {
         bnd.txvCriarConta.setOnClickListener { Toast.makeText(requireContext(), "Direcionar para criar conta", Toast.LENGTH_SHORT).show() }
