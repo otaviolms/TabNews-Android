@@ -3,7 +3,7 @@ package br.com.otaviolms.tabnews.views.user
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import br.com.otaviolms.tabnews.connections.RetrofitBuilder
-import br.com.otaviolms.tabnews.implementations.BaseViewModel
+import br.com.otaviolms.tabnews.implementations.bases.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

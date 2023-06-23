@@ -1,4 +1,4 @@
-package br.com.otaviolms.tabnews.implementations
+package br.com.otaviolms.tabnews.implementations.listeners
 
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager

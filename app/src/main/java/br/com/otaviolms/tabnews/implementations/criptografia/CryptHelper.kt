@@ -1,18 +1,12 @@
-package br.com.otaviolms.tabnews.implementations
+package br.com.otaviolms.tabnews.implementations.criptografia
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.util.Base64
 import android.util.Log
-import okio.Utf8
-import java.nio.charset.Charset
 import java.security.SecureRandom
 import javax.crypto.Cipher
 import javax.crypto.Cipher.DECRYPT_MODE
 import javax.crypto.Cipher.ENCRYPT_MODE
-import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
-import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 object CryptHelper {

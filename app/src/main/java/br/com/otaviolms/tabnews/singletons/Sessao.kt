@@ -1,9 +1,10 @@
-package br.com.otaviolms.tabnews.implementations
+package br.com.otaviolms.tabnews.singletons
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import br.com.otaviolms.tabnews.connections.RetrofitBuilder
+import br.com.otaviolms.tabnews.implementations.PreferencesController
+import br.com.otaviolms.tabnews.implementations.criptografia.CryptHelper
 import br.com.otaviolms.tabnews.models.responses.UsuarioResponseModel
 
 object Sessao {

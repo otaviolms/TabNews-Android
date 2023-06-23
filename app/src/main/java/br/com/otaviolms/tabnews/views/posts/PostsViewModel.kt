@@ -1,14 +1,10 @@
 package br.com.otaviolms.tabnews.views.posts
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.otaviolms.tabnews.connections.RetrofitBuilder
 import br.com.otaviolms.tabnews.enums.StrategyEnum
-import br.com.otaviolms.tabnews.implementations.BaseViewModel
-import br.com.otaviolms.tabnews.views.post.PostUiState
+import br.com.otaviolms.tabnews.implementations.bases.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

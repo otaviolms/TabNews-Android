@@ -1,19 +1,11 @@
 package br.com.otaviolms.tabnews.views
 
-import android.graphics.Paint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
-import br.com.otaviolms.tabnews.R
+import androidx.appcompat.app.AppCompatActivity
 import br.com.otaviolms.tabnews.databinding.ActivityMainBinding
-import br.com.otaviolms.tabnews.databinding.FragmentPostsBinding
-import br.com.otaviolms.tabnews.extensions.colocarUnderline
-import br.com.otaviolms.tabnews.extensions.removerUnderline
-import br.com.otaviolms.tabnews.implementations.Sessao
+import br.com.otaviolms.tabnews.singletons.Sessao
 import br.com.otaviolms.tabnews.views.login.LoginUiState
 import br.com.otaviolms.tabnews.views.login.LoginViewModel
 

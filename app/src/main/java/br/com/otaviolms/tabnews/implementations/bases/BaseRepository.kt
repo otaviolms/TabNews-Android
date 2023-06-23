@@ -1,6 +1,5 @@
-package br.com.otaviolms.tabnews.implementations
+package br.com.otaviolms.tabnews.implementations.bases
 
-import android.util.Log
 import retrofit2.Response
 import kotlin.jvm.Throws
 

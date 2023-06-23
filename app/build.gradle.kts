@@ -74,6 +74,14 @@ dependencies {
     implementation("io.noties.markwon:core:$markwon_version")
     implementation("io.noties.markwon:image-glide:$markwon_version")
     implementation("io.noties.markwon:linkify:$markwon_version")
+    implementation("io.noties.markwon:ext-tasklist:$markwon_version")
+    implementation("io.noties.markwon:ext-tables:$markwon_version")
+//    implementation("io.noties.markwon:syntax-highlight:$markwon_version")
+
+//    val prism_version = "2.0.0"
+//    implementation("io.noties:prism4j:$prism_version")
+//    annotationProcessor("io.noties:prism4j-bundler:$prism_version")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.0")
 
     implementation("nl.dionsegijn:konfetti-xml:2.0.2")
 

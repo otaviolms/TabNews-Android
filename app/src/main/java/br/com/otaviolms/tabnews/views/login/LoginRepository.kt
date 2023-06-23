@@ -1,8 +1,7 @@
 package br.com.otaviolms.tabnews.views.login
 
-import br.com.otaviolms.tabnews.api.ConteudosAPI
 import br.com.otaviolms.tabnews.api.LoginAPI
-import br.com.otaviolms.tabnews.implementations.BaseRepository
+import br.com.otaviolms.tabnews.implementations.bases.BaseRepository
 import br.com.otaviolms.tabnews.models.requests.LoginRequestModel
 import retrofit2.Retrofit
 

@@ -1,6 +1,6 @@
 package br.com.otaviolms.tabnews.connections
 
-import br.com.otaviolms.tabnews.implementations.Sessao
+import br.com.otaviolms.tabnews.singletons.Sessao
 import okhttp3.Interceptor
 import okhttp3.Response
 

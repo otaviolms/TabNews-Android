@@ -21,5 +21,5 @@ data class PostResponseModel(
     @JsonProperty("tabcoins") val tabcoins: Int,
     @JsonProperty("title") val titulo: String?,
     @JsonProperty("updated_at") val updatedAt: String,
-    @JsonProperty("nivel") val nivel: Int = 0
+    @JsonProperty("nivel") var nivel: Int = 0
 )

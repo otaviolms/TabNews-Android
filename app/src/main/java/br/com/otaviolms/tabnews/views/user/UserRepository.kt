@@ -1,7 +1,7 @@
 package br.com.otaviolms.tabnews.views.user
 
 import br.com.otaviolms.tabnews.api.ConteudosAPI
-import br.com.otaviolms.tabnews.implementations.BaseRepository
+import br.com.otaviolms.tabnews.implementations.bases.BaseRepository
 import retrofit2.Retrofit
 
 class UserRepository(

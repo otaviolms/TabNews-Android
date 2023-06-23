@@ -1,4 +1,4 @@
-package br.com.otaviolms.tabnews.implementations
+package br.com.otaviolms.tabnews.implementations.bases
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

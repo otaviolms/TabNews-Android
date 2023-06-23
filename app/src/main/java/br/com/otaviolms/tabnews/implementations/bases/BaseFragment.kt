@@ -1,8 +1,7 @@
-package br.com.otaviolms.tabnews.implementations
+package br.com.otaviolms.tabnews.implementations.bases
 
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import br.com.otaviolms.tabnews.extensions.obterAnnotations
+import br.com.otaviolms.tabnews.implementations.annotations.Binding
 import br.com.otaviolms.tabnews.models.responses.UsuarioResponseModel
+import br.com.otaviolms.tabnews.singletons.Sessao
 
 /***
  * Sobreescreva os métodos que forem necessários e eles serão chamados na seguinte ordem:
@@ -36,8 +38,16 @@ abstract class BaseFragment<BINDING: ViewBinding>: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bnd = inflateBinding(inflater, container)
-        return bnd.root
+        return (obterAnnotations().find { it is Binding } as? Binding)?.let {
+            val method = it.binding.java.getMethod(
+                "inflate",
+                LayoutInflater::class.java,
+                ViewGroup::class.java,
+                Boolean::class.java
+            )
+            bnd = method.invoke(null, inflater, container, false) as BINDING
+            return bnd.root
+        } ?: bnd.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +61,6 @@ abstract class BaseFragment<BINDING: ViewBinding>: Fragment() {
         this.loadData()
     }
 
-    protected abstract fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?): BINDING
     protected open fun setupHeader() {}
     protected open fun setupView() {}
     protected open fun setupListeners() {}

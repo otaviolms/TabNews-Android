@@ -1,30 +1,21 @@
 package br.com.otaviolms.tabnews.views.posts
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.com.otaviolms.tabnews.R
 import br.com.otaviolms.tabnews.adapters.ConteudosAdapter
-import br.com.otaviolms.tabnews.databinding.FragmentPostBinding
 import br.com.otaviolms.tabnews.databinding.FragmentPostsBinding
 import br.com.otaviolms.tabnews.enums.StrategyEnum
 import br.com.otaviolms.tabnews.extensions.makeGone
 import br.com.otaviolms.tabnews.extensions.makeVisible
 import br.com.otaviolms.tabnews.extensions.pegarDrawable
 import br.com.otaviolms.tabnews.extensions.removerFundo
-import br.com.otaviolms.tabnews.implementations.BaseFragment
-import br.com.otaviolms.tabnews.implementations.CryptHelper
-import br.com.otaviolms.tabnews.implementations.PaginationListener
-import br.com.otaviolms.tabnews.implementations.Sessao
-import br.com.otaviolms.tabnews.models.responses.UsuarioResponseModel
-import com.github.javafaker.Crypto
+import br.com.otaviolms.tabnews.implementations.bases.BaseFragment
+import br.com.otaviolms.tabnews.implementations.listeners.PaginationListener
+import br.com.otaviolms.tabnews.singletons.Sessao
+import br.com.otaviolms.tabnews.implementations.annotations.Binding
 
+@Binding(FragmentPostsBinding::class)
 class PostsFragment: BaseFragment<FragmentPostsBinding>() {
 
     private val vm: PostsViewModel by viewModels()
@@ -39,9 +30,6 @@ class PostsFragment: BaseFragment<FragmentPostsBinding>() {
     private val conteudosAdapter by lazy {
         ConteudosAdapter(context = requireContext()) { abrirDeeplink("${it.autor}/${it.slug}") }
     }
-
-    override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
-        FragmentPostsBinding.inflate(inflater, container, false)
 
     override fun setupHeader() {
         bnd.imvLogoApp.setOnClickListener { abrirDeeplink() }

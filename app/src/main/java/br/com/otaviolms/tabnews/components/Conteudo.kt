@@ -3,8 +3,6 @@ package br.com.otaviolms.tabnews.components
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import br.com.otaviolms.tabnews.databinding.ComponenteConteudoBinding
 import br.com.otaviolms.tabnews.extensions.makeGone
@@ -13,7 +11,10 @@ import br.com.otaviolms.tabnews.implementations.callbacks.ConteudoCallbacks
 import br.com.otaviolms.tabnews.models.responses.PostResponseModel
 import br.com.otaviolms.tabnews.utils.montarStringTempoPassado
 import io.noties.markwon.Markwon
+import io.noties.markwon.ext.tables.TablePlugin
+import io.noties.markwon.ext.tasklist.TaskListPlugin
 import io.noties.markwon.image.glide.GlideImagesPlugin
+
 
 class Conteudo(context: Context, attrs: AttributeSet): ConstraintLayout(context, attrs) {
 
@@ -24,10 +25,9 @@ class Conteudo(context: Context, attrs: AttributeSet): ConstraintLayout(context,
             bnd.txvAutor.text = autor
             bnd.txvData.text = montarStringTempoPassado(context, publishedAt)
             bnd.txvTabCoins.text = tabcoins.toString()
-            bnd.txvConteudo.text = body
             bnd.txvTitulo.text = titulo
 
-            if(parentId != null) bnd.txvTitulo.makeVisible()
+            if(parentId == null) bnd.txvTitulo.makeVisible()
             else bnd.txvTitulo.makeGone()
 
             bnd.imvBaixo.setOnClickListener { callback.onBaixo() }
@@ -36,6 +36,8 @@ class Conteudo(context: Context, attrs: AttributeSet): ConstraintLayout(context,
 
             Markwon.builder(context)
                 .usePlugin(GlideImagesPlugin.create(context))
+                .usePlugin(TablePlugin.create(context))
+                .usePlugin(TaskListPlugin.create(context))
                 .build()
                 .setMarkdown(bnd.txvConteudo, body ?: "")
         }

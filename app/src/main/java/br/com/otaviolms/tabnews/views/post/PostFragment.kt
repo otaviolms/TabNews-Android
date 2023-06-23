@@ -1,18 +1,17 @@
 package br.com.otaviolms.tabnews.views.post
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import br.com.otaviolms.tabnews.adapters.ConteudosAdapter
 import br.com.otaviolms.tabnews.adapters.RespostasAdapter
 import br.com.otaviolms.tabnews.databinding.FragmentPostBinding
 import br.com.otaviolms.tabnews.extensions.makeGone
 import br.com.otaviolms.tabnews.extensions.makeVisible
-import br.com.otaviolms.tabnews.implementations.BaseFragment
-import br.com.otaviolms.tabnews.implementations.Sessao
+import br.com.otaviolms.tabnews.implementations.annotations.Binding
+import br.com.otaviolms.tabnews.implementations.bases.BaseFragment
 import br.com.otaviolms.tabnews.implementations.callbacks.ConteudoCallbacks
 import br.com.otaviolms.tabnews.models.responses.PostResponseModel
+import br.com.otaviolms.tabnews.singletons.Sessao
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
@@ -20,6 +19,7 @@ import nl.dionsegijn.konfetti.core.models.Shape
 import java.util.concurrent.TimeUnit
 
 
+@Binding(FragmentPostBinding::class)
 class PostFragment: BaseFragment<FragmentPostBinding>() {
 
     private val vm: PostViewModel by viewModels()
@@ -49,34 +49,26 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
         shapes = listOf(Shape.Square)
     )
 
-    override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
-        FragmentPostBinding.inflate(inflater, container, false)
-
     override fun setupHeader() {
         bnd.imvLogoApp.setOnClickListener { voltar() }
     }
 
     override fun setupView() {
         usuario?.let { bnd.btnResponder.makeVisible() } ?: bnd.btnResponder.makeGone()
-        bnd.rcvComentarios.adapter = respostasAdapter
+        bnd.rcvPostComentarios.adapter = respostasAdapter
     }
 
     override fun setupListeners() {
-        bnd.btnResponder.setOnClickListener { bnd.confeti.start(party) }
+        bnd.btnResponder.setOnClickListener {
+            bnd.confeti.start(party)
+        }
     }
 
     override fun setupUiState() {
         vm.uiState.observe(viewLifecycleOwner) { uiState ->
             when(uiState) {
-                is PostUiState.Sucesso -> {
-                    bnd.conteudo.renderPost(conteudo = uiState.post, callback = callbacks)
-                }
-                is PostUiState.SucessoComentarios -> {
-                    respostasAdapter.definirConteudo(uiState.comentarios)
-                }
-                is PostUiState.ErroComentarios,
-                is PostUiState.Erro -> {
-                }
+                is PostUiState.Sucesso -> respostasAdapter.definirConteudo(uiState.conteudos)
+                is PostUiState.Erro -> {}
             }
         }
     }
@@ -87,7 +79,6 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
 
     override fun loadData() {
         vm.carregarPost(autor = args.autor, slug = args.slug)
-        vm.carregarComentarios(autor = args.autor, slug = args.slug)
     }
 
 }

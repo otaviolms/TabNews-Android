@@ -1,13 +1,10 @@
 package br.com.otaviolms.tabnews.views.login
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.otaviolms.tabnews.connections.RetrofitBuilder
-import br.com.otaviolms.tabnews.implementations.BaseViewModel
-import br.com.otaviolms.tabnews.implementations.Sessao
+import br.com.otaviolms.tabnews.implementations.bases.BaseViewModel
+import br.com.otaviolms.tabnews.singletons.Sessao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

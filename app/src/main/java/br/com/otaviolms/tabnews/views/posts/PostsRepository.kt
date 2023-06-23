@@ -2,7 +2,7 @@ package br.com.otaviolms.tabnews.views.posts
 
 import br.com.otaviolms.tabnews.api.ConteudosAPI
 import br.com.otaviolms.tabnews.enums.StrategyEnum
-import br.com.otaviolms.tabnews.implementations.BaseRepository
+import br.com.otaviolms.tabnews.implementations.bases.BaseRepository
 import retrofit2.Retrofit
 
 class PostsRepository(

@@ -1,19 +1,14 @@
 package br.com.otaviolms.tabnews.views.user
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import br.com.otaviolms.tabnews.adapters.ConteudosAdapter
-import br.com.otaviolms.tabnews.databinding.FragmentPostsBinding
 import br.com.otaviolms.tabnews.databinding.FragmentUserBinding
-import br.com.otaviolms.tabnews.extensions.makeGone
-import br.com.otaviolms.tabnews.implementations.BaseFragment
-import br.com.otaviolms.tabnews.implementations.Sessao
+import br.com.otaviolms.tabnews.implementations.bases.BaseFragment
+import br.com.otaviolms.tabnews.singletons.Sessao
+import br.com.otaviolms.tabnews.implementations.annotations.Binding
 
-
+@Binding(FragmentUserBinding::class)
 class UserFragment: BaseFragment<FragmentUserBinding>() {
 
     private val vm: UserViewModel by viewModels()
@@ -23,9 +18,6 @@ class UserFragment: BaseFragment<FragmentUserBinding>() {
     private val conteudosAdapter by lazy {
         ConteudosAdapter(context = requireContext()) { abrirDeeplink("${it.autor}/${it.slug}") }
     }
-
-    override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
-        FragmentUserBinding.inflate(inflater, container, false)
 
     override fun setupHeader() {
         bnd.imvLogoApp.setOnClickListener { voltar() }
