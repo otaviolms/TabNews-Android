@@ -2,6 +2,9 @@
 plugins {
     id("com.android.application") version "8.1.0-beta04" apply false
     id("org.jetbrains.kotlin.android") version "1.8.0" apply false
+
+//    val ksp_version = "1.8.21-1.0.11"
+//    id("com.google.devtools.ksp") version "$ksp_version"
 }
 
 buildscript {

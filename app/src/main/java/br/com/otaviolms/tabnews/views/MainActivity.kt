@@ -2,23 +2,21 @@ package br.com.otaviolms.tabnews.views
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import br.com.otaviolms.tabnews.databinding.ActivityMainBinding
+import br.com.otaviolms.tabnews.implementations.annotations.Binding
+import br.com.otaviolms.tabnews.implementations.bases.BaseActivity
 import br.com.otaviolms.tabnews.singletons.Sessao
 import br.com.otaviolms.tabnews.views.login.LoginUiState
 import br.com.otaviolms.tabnews.views.login.LoginViewModel
+import org.koin.android.ext.android.inject
 
-class MainActivity : AppCompatActivity() {
+@Binding(ActivityMainBinding::class)
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private lateinit var bnd: ActivityMainBinding
-
-    private val vm: LoginViewModel by viewModels()
+    private val vm: LoginViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bnd = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(bnd.root)
         setupUiState()
         tentarRecuperarCredenciais()
     }
@@ -31,11 +29,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUiState() {
         vm.uiState.observe(this) { uiState ->
-            when(uiState) {
-                is LoginUiState.Sucesso -> { vm.carregarUsuario() }
-                is LoginUiState.SucessoUsuario -> {
-
+            when (uiState) {
+                is LoginUiState.Sucesso -> {
+                    vm.carregarUsuario()
                 }
+
+                is LoginUiState.SucessoUsuario -> {}
                 else -> {}
             }
         }

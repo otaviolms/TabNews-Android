@@ -1,6 +1,5 @@
 package br.com.otaviolms.tabnews.views.posts
 
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import br.com.otaviolms.tabnews.R
 import br.com.otaviolms.tabnews.adapters.ConteudosAdapter
@@ -10,15 +9,16 @@ import br.com.otaviolms.tabnews.extensions.makeGone
 import br.com.otaviolms.tabnews.extensions.makeVisible
 import br.com.otaviolms.tabnews.extensions.pegarDrawable
 import br.com.otaviolms.tabnews.extensions.removerFundo
+import br.com.otaviolms.tabnews.implementations.annotations.Binding
 import br.com.otaviolms.tabnews.implementations.bases.BaseFragment
 import br.com.otaviolms.tabnews.implementations.listeners.PaginationListener
 import br.com.otaviolms.tabnews.singletons.Sessao
-import br.com.otaviolms.tabnews.implementations.annotations.Binding
+import org.koin.android.ext.android.inject
 
 @Binding(FragmentPostsBinding::class)
 class PostsFragment: BaseFragment<FragmentPostsBinding>() {
 
-    private val vm: PostsViewModel by viewModels()
+    private val vm: PostsViewModel by inject()
 
     private val args: PostsFragmentArgs by navArgs()
     private val strategy by lazy { if(args.strategy == "recentes") StrategyEnum.RECENTES else StrategyEnum.RELEVANTES }

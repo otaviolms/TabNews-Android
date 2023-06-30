@@ -3,8 +3,10 @@ package br.com.otaviolms.tabnews.components
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import br.com.otaviolms.tabnews.databinding.ComponenteConteudoBinding
+import br.com.otaviolms.tabnews.databinding.ItemHierarquiaBinding
 import br.com.otaviolms.tabnews.extensions.makeGone
 import br.com.otaviolms.tabnews.extensions.makeVisible
 import br.com.otaviolms.tabnews.implementations.callbacks.ConteudoCallbacks
@@ -27,12 +29,17 @@ class Conteudo(context: Context, attrs: AttributeSet): ConstraintLayout(context,
             bnd.txvTabCoins.text = tabcoins.toString()
             bnd.txvTitulo.text = titulo
 
-            if(parentId == null) bnd.txvTitulo.makeVisible()
+            if (parentId == null) bnd.txvTitulo.makeVisible()
             else bnd.txvTitulo.makeGone()
 
             bnd.imvBaixo.setOnClickListener { callback.onBaixo() }
             bnd.imvCima.setOnClickListener { callback.onCima() }
             bnd.txvAutor.setOnClickListener { callback.onAutor(autor) }
+
+            if (this.nivel > 0) {
+                bnd.llHierarquia.makeVisible()
+                renderHierarquia(nivel = nivel, parent = bnd.llHierarquia)
+            } else bnd.llHierarquia.makeGone()
 
             Markwon.builder(context)
                 .usePlugin(GlideImagesPlugin.create(context))
@@ -41,6 +48,15 @@ class Conteudo(context: Context, attrs: AttributeSet): ConstraintLayout(context,
                 .build()
                 .setMarkdown(bnd.txvConteudo, body ?: "")
         }
+    }
+
+    private fun renderHierarquia(nivel: Int, parent: ViewGroup) {
+        parent.removeAllViews()
+        for (i in 0 until nivel) ItemHierarquiaBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            true
+        )
     }
 
 }

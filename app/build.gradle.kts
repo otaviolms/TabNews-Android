@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+//    id("com.google.devtools.ksp")
 }
 
 android {
@@ -38,6 +39,12 @@ android {
         viewBinding = true
         buildConfig = true
     }
+
+//    applicationVariants.all { variant ->
+//        variant.sourceSets.forEach {
+//            it.kotlinDirectories += "build/generated/ksp/${variant.name}/kotlin"
+//        }
+//    }
 }
 
 dependencies {
@@ -82,6 +89,11 @@ dependencies {
 //    implementation("io.noties:prism4j:$prism_version")
 //    annotationProcessor("io.noties:prism4j-bundler:$prism_version")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.0")
+
+    val koin_version = "3.4.2"
+    implementation("io.insert-koin:koin-android:$koin_version")
+//    implementation("io.insert-koin:koin-annotations:$koin_version")
+//    ksp("io.insert-koin:koin-ksp-compiler:$koin_version")
 
     implementation("nl.dionsegijn:konfetti-xml:2.0.2")
 

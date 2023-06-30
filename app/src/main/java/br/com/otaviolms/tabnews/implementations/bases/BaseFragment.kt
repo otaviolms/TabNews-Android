@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import br.com.otaviolms.tabnews.extensions.obterAnnotations
 import br.com.otaviolms.tabnews.implementations.annotations.Binding
 import br.com.otaviolms.tabnews.models.responses.UsuarioResponseModel
 import br.com.otaviolms.tabnews.singletons.Sessao
+import kotlin.reflect.full.findAnnotation
 
 /***
  * Sobreescreva os métodos que forem necessários e eles serão chamados na seguinte ordem:
@@ -38,7 +38,7 @@ abstract class BaseFragment<BINDING: ViewBinding>: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return (obterAnnotations().find { it is Binding } as? Binding)?.let {
+        return this::class.findAnnotation<Binding>()?.let {
             val method = it.binding.java.getMethod(
                 "inflate",
                 LayoutInflater::class.java,

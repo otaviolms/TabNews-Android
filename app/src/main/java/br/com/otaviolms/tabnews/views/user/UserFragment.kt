@@ -1,17 +1,17 @@
 package br.com.otaviolms.tabnews.views.user
 
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import br.com.otaviolms.tabnews.adapters.ConteudosAdapter
 import br.com.otaviolms.tabnews.databinding.FragmentUserBinding
+import br.com.otaviolms.tabnews.implementations.annotations.Binding
 import br.com.otaviolms.tabnews.implementations.bases.BaseFragment
 import br.com.otaviolms.tabnews.singletons.Sessao
-import br.com.otaviolms.tabnews.implementations.annotations.Binding
+import org.koin.android.ext.android.inject
 
 @Binding(FragmentUserBinding::class)
 class UserFragment: BaseFragment<FragmentUserBinding>() {
 
-    private val vm: UserViewModel by viewModels()
+    private val vm: UserViewModel by inject()
 
     private val args: UserFragmentArgs by navArgs()
 
@@ -26,9 +26,6 @@ class UserFragment: BaseFragment<FragmentUserBinding>() {
 
     override fun setupView() {
         bnd.rcvConteudos.adapter = conteudosAdapter
-    }
-
-    override fun setupListeners() {
     }
 
     override fun setupUiState() {

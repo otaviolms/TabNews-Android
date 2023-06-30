@@ -1,7 +1,5 @@
 package br.com.otaviolms.tabnews.views.post
 
-import android.util.Log
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import br.com.otaviolms.tabnews.adapters.RespostasAdapter
 import br.com.otaviolms.tabnews.databinding.FragmentPostBinding
@@ -16,13 +14,14 @@ import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import nl.dionsegijn.konfetti.core.models.Shape
+import org.koin.android.ext.android.inject
 import java.util.concurrent.TimeUnit
 
 
 @Binding(FragmentPostBinding::class)
 class PostFragment: BaseFragment<FragmentPostBinding>() {
 
-    private val vm: PostViewModel by viewModels()
+    private val vm: PostViewModel by inject()
 
     private val args: PostFragmentArgs by navArgs()
 
