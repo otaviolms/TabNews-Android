@@ -1,14 +1,26 @@
 package br.com.otaviolms.tabnews.views.post
 
 import br.com.otaviolms.tabnews.api.ConteudosAPI
+import br.com.otaviolms.tabnews.connections.RetrofitBuilder
+import br.com.otaviolms.tabnews.enums.TipoVoteEnum
 import br.com.otaviolms.tabnews.implementations.bases.BaseRepository
-import retrofit2.Retrofit
+import br.com.otaviolms.tabnews.models.requests.UpDownVoteRequestModel
 
-class PostRepository(
-    retrofit: Retrofit
-): BaseRepository {
+class PostRepository : BaseRepository {
 
-    private val api: ConteudosAPI = retrofit.create(ConteudosAPI::class.java)
+    private val api: ConteudosAPI = RetrofitBuilder.retrofit.create(ConteudosAPI::class.java)
+
+    suspend fun upDownVote(
+        autor: String,
+        slug: String,
+        tipo: TipoVoteEnum
+    ) = chamarApi {
+        api.upDownVote(
+            autor = autor,
+            slug = slug,
+            tipo = UpDownVoteRequestModel(tipo.nome)
+        )
+    }
 
     suspend fun carregarPost(
         autor: String,

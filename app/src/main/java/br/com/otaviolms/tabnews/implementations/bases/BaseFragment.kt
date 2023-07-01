@@ -58,7 +58,6 @@ abstract class BaseFragment<BINDING: ViewBinding>: Fragment() {
         this.setupObservers()
         this.setBackClickListeners()
         this.setupUiState()
-        this.loadData()
     }
 
     protected open fun setupHeader() {}
@@ -68,8 +67,14 @@ abstract class BaseFragment<BINDING: ViewBinding>: Fragment() {
     protected open fun setupBack() {
         this.voltar()
     }
+
     protected open fun setupUiState() {}
     protected open fun loadData() {}
+
+    override fun onResume() {
+        super.onResume()
+        this.loadData()
+    }
 
     private fun setBackClickListeners() {
         val callback = object : OnBackPressedCallback(true) {

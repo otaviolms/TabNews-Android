@@ -20,7 +20,7 @@ class UserFragment: BaseFragment<FragmentUserBinding>() {
     }
 
     override fun setupHeader() {
-        bnd.imvLogoApp.setOnClickListener { voltar() }
+        bnd.imvBack.setOnClickListener { voltar() }
         bnd.txvUsername.text = args.username
     }
 
@@ -30,12 +30,9 @@ class UserFragment: BaseFragment<FragmentUserBinding>() {
 
     override fun setupUiState() {
         vm.uiState.observe(viewLifecycleOwner) { uiState ->
-            when(uiState) {
-                is UserUiState.Sucesso -> {
-                    conteudosAdapter.definirConteudo(uiState.conteudo)
-                }
-                is UserUiState.Erro -> {
-                }
+            when (uiState) {
+                is UserUiState.Sucesso -> conteudosAdapter.definirConteudo(uiState.conteudo)
+                is UserUiState.Erro -> {}
             }
         }
     }

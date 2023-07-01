@@ -62,6 +62,7 @@ dependencies {
     val retrofit_version = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
     implementation("com.squareup.retrofit2:converter-jackson:$retrofit_version")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
     val jackson_version = "2.14.1"
     implementation("com.fasterxml.jackson.core:jackson-databind:$jackson_version")
@@ -96,9 +97,6 @@ dependencies {
 //    ksp("io.insert-koin:koin-ksp-compiler:$koin_version")
 
     implementation("nl.dionsegijn:konfetti-xml:2.0.2")
-
-//    TODO: Remover dependência
-    implementation("com.github.javafaker:javafaker:1.0.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

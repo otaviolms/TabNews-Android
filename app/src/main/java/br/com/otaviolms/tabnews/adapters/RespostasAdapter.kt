@@ -19,16 +19,26 @@ class RespostasAdapter(
     ) = RespostaItemViewHolder(ItemConteudoBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: RespostaItemViewHolder, position: Int) {
-        holder.bnd.conteudo.renderPost(conteudo = dataSet[position], callback = callback)
+        holder.bnd.conteudo.renderPost(
+            conteudo = dataSet[position],
+            callback = callback,
+            posicao = position
+        )
     }
 
     override fun getItemCount() = dataSet.size
 
-    inner class RespostaItemViewHolder(val bnd: ItemConteudoBinding): RecyclerView.ViewHolder(bnd.root)
+    inner class RespostaItemViewHolder(val bnd: ItemConteudoBinding) :
+        RecyclerView.ViewHolder(bnd.root)
 
     fun definirConteudo(itens: ArrayList<PostResponseModel>) {
         dataSet = itens
         notifyDataSetChanged()
+    }
+
+    fun atualizarTabCoins(posicao: Int, novoValor: Int) {
+        dataSet[posicao].tabcoins = novoValor
+        notifyItemChanged(posicao)
     }
 
 }

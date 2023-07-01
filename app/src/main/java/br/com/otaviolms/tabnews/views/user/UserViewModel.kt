@@ -2,13 +2,12 @@ package br.com.otaviolms.tabnews.views.user
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
-import br.com.otaviolms.tabnews.connections.RetrofitBuilder
 import br.com.otaviolms.tabnews.implementations.bases.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UserViewModel(
-    private val repository: UserRepository = UserRepository(retrofit = RetrofitBuilder.getInstance())
+    private val repository: UserRepository = UserRepository()
 ): BaseViewModel<UserUiState>() {
 
     fun listarPostsUsuario(username: String) {

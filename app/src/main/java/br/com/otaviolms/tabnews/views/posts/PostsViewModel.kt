@@ -2,14 +2,13 @@ package br.com.otaviolms.tabnews.views.posts
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
-import br.com.otaviolms.tabnews.connections.RetrofitBuilder
 import br.com.otaviolms.tabnews.enums.StrategyEnum
 import br.com.otaviolms.tabnews.implementations.bases.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PostsViewModel(
-    private val repository: PostsRepository = PostsRepository(retrofit = RetrofitBuilder.getInstance())
+    private val repository: PostsRepository = PostsRepository()
 ): BaseViewModel<PostsUiState>() {
 
     fun listarPosts(page: Int, perPage: Int = 10, strategy: StrategyEnum = StrategyEnum.RECENTES, novaPagina: Boolean = false) {

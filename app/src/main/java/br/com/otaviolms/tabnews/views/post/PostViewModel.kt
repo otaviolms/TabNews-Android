@@ -1,8 +1,7 @@
 package br.com.otaviolms.tabnews.views.post
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
-import br.com.otaviolms.tabnews.connections.RetrofitBuilder
+import br.com.otaviolms.tabnews.enums.TipoVoteEnum
 import br.com.otaviolms.tabnews.extensions.calcularNiveis
 import br.com.otaviolms.tabnews.implementations.bases.BaseViewModel
 import br.com.otaviolms.tabnews.models.responses.PostResponseModel
@@ -10,8 +9,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PostViewModel(
-    private val repository: PostRepository = PostRepository(retrofit = RetrofitBuilder.getInstance())
+    private val repository: PostRepository = PostRepository()
 ): BaseViewModel<PostUiState>() {
+
+    fun upDownVote(autor: String, slug: String, tipo: TipoVoteEnum, posicao: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching { repository.upDownVote(autor, slug, tipo) }
+                .onSuccess { setState(PostUiState.SucessoVote(it.tabcoins, posicao)) }
+                .onFailure { setState(PostUiState.ErroVote(it.message ?: "Falha!")) }
+        }
+    }
 
     fun carregarPost(autor: String, slug: String) {
         viewModelScope.launch(Dispatchers.IO) {

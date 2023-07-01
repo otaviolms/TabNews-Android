@@ -1,16 +1,16 @@
 package br.com.otaviolms.tabnews.views.login
 
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import br.com.otaviolms.tabnews.databinding.FragmentLoginBinding
+import br.com.otaviolms.tabnews.implementations.annotations.Binding
 import br.com.otaviolms.tabnews.implementations.bases.BaseFragment
 import br.com.otaviolms.tabnews.singletons.Sessao
-import br.com.otaviolms.tabnews.implementations.annotations.Binding
+import org.koin.android.ext.android.inject
 
 @Binding(FragmentLoginBinding::class)
 class LoginFragment: BaseFragment<FragmentLoginBinding>() {
 
-    private val vm: LoginViewModel by viewModels()
+    private val vm: LoginViewModel by inject()
 
     private val emailDigitado: String
         get() = bnd.edtEmail.text.toString()

@@ -1,15 +1,13 @@
 package br.com.otaviolms.tabnews.views.posts
 
 import br.com.otaviolms.tabnews.api.ConteudosAPI
+import br.com.otaviolms.tabnews.connections.RetrofitBuilder
 import br.com.otaviolms.tabnews.enums.StrategyEnum
 import br.com.otaviolms.tabnews.implementations.bases.BaseRepository
-import retrofit2.Retrofit
 
-class PostsRepository(
-    retrofit: Retrofit
-): BaseRepository {
+class PostsRepository : BaseRepository {
 
-    private val api: ConteudosAPI = retrofit.create(ConteudosAPI::class.java)
+    private val api: ConteudosAPI = RetrofitBuilder.retrofit.create(ConteudosAPI::class.java)
 
     suspend fun listarConteudos(
         page: Int,

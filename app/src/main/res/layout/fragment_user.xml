@@ -19,10 +19,12 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <ImageView
-            android:id="@+id/imvLogoApp"
+            android:id="@+id/imvBack"
+            android:padding="6dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/tabnews"/>
+            android:src="@drawable/ic_back"
+            app:tint="?textoToolbar" />
 
         <TextView
             android:id="@+id/txvUsername"

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import br.com.otaviolms.tabnews.databinding.ComponenteConteudoBinding
 import br.com.otaviolms.tabnews.databinding.ItemHierarquiaBinding
+import br.com.otaviolms.tabnews.enums.TipoVoteEnum
 import br.com.otaviolms.tabnews.extensions.makeGone
 import br.com.otaviolms.tabnews.extensions.makeVisible
 import br.com.otaviolms.tabnews.implementations.callbacks.ConteudoCallbacks
@@ -22,7 +23,7 @@ class Conteudo(context: Context, attrs: AttributeSet): ConstraintLayout(context,
 
     private val bnd = ComponenteConteudoBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun renderPost(conteudo: PostResponseModel, callback: ConteudoCallbacks) {
+    fun renderPost(conteudo: PostResponseModel, callback: ConteudoCallbacks, posicao: Int) {
         with(conteudo) {
             bnd.txvAutor.text = autor
             bnd.txvData.text = montarStringTempoPassado(context, publishedAt)
@@ -32,8 +33,8 @@ class Conteudo(context: Context, attrs: AttributeSet): ConstraintLayout(context,
             if (parentId == null) bnd.txvTitulo.makeVisible()
             else bnd.txvTitulo.makeGone()
 
-            bnd.imvBaixo.setOnClickListener { callback.onBaixo() }
-            bnd.imvCima.setOnClickListener { callback.onCima() }
+            bnd.imvBaixo.setOnClickListener { callback.onVote(TipoVoteEnum.DEBITO, posicao) }
+            bnd.imvCima.setOnClickListener { callback.onVote(TipoVoteEnum.CREDITO, posicao) }
             bnd.txvAutor.setOnClickListener { callback.onAutor(autor) }
 
             if (this.nivel > 0) {

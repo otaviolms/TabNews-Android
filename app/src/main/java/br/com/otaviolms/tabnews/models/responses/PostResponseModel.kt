@@ -1,6 +1,5 @@
 package br.com.otaviolms.tabnews.models.responses
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
@@ -18,7 +17,7 @@ data class PostResponseModel(
     @JsonProperty("slug") val slug: String,
     @JsonProperty("source_url") val sourceUrl: Any?,
     @JsonProperty("status") val status: String,
-    @JsonProperty("tabcoins") val tabcoins: Int,
+    @JsonProperty("tabcoins") var tabcoins: Int,
     @JsonProperty("title") val titulo: String?,
     @JsonProperty("updated_at") val updatedAt: String,
     @JsonProperty("nivel") var nivel: Int = 0

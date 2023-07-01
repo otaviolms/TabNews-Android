@@ -1,8 +1,10 @@
 package br.com.otaviolms.tabnews.views.post
 
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import br.com.otaviolms.tabnews.adapters.RespostasAdapter
 import br.com.otaviolms.tabnews.databinding.FragmentPostBinding
+import br.com.otaviolms.tabnews.enums.TipoVoteEnum
 import br.com.otaviolms.tabnews.extensions.makeGone
 import br.com.otaviolms.tabnews.extensions.makeVisible
 import br.com.otaviolms.tabnews.implementations.annotations.Binding
@@ -27,11 +29,19 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
 
     private val callbacks by lazy {
         object : ConteudoCallbacks {
-            override fun onAutor(autor: String) { abrirDeeplink(autor) }
-            override fun onBaixo() {}
-            override fun onCima() { bnd.confeti.start(party) }
+            override fun onAutor(autor: String) {
+                abrirDeeplink(autor)
+            }
+
+            override fun onVote(vote: TipoVoteEnum, posicao: Int) {
+                if (vote == TipoVoteEnum.CREDITO) bnd.confeti.start(party)
+                vm.upDownVote(autor = args.autor, slug = args.slug, tipo = vote, posicao = posicao)
+            }
+
             override fun onResponder() {}
-            override fun onClick(post: PostResponseModel) { abrirDeeplink("${post.autor}/${post.slug}") }
+            override fun onClick(post: PostResponseModel) {
+                abrirDeeplink("${post.autor}/${post.slug}")
+            }
         }
     }
 
@@ -49,7 +59,7 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
     )
 
     override fun setupHeader() {
-        bnd.imvLogoApp.setOnClickListener { voltar() }
+        bnd.imvBack.setOnClickListener { voltar() }
     }
 
     override fun setupView() {
@@ -67,7 +77,17 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
         vm.uiState.observe(viewLifecycleOwner) { uiState ->
             when(uiState) {
                 is PostUiState.Sucesso -> respostasAdapter.definirConteudo(uiState.conteudos)
+                is PostUiState.SucessoVote -> respostasAdapter.atualizarTabCoins(
+                    posicao = uiState.posicao,
+                    novoValor = uiState.tabcoins
+                )
+
                 is PostUiState.Erro -> {}
+                is PostUiState.ErroVote -> Toast.makeText(
+                    requireContext(),
+                    uiState.mensagem,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
