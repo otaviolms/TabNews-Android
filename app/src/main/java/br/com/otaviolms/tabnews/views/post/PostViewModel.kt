@@ -15,7 +15,7 @@ class PostViewModel(
     fun upDownVote(autor: String, slug: String, tipo: TipoVoteEnum, posicao: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching { repository.upDownVote(autor, slug, tipo) }
-                .onSuccess { setState(PostUiState.SucessoVote(it.tabcoins, posicao)) }
+                .onSuccess { setState(PostUiState.SucessoVote(it.tabcoins, posicao, tipo)) }
                 .onFailure { setState(PostUiState.ErroVote(it.message ?: "Falha!")) }
         }
     }

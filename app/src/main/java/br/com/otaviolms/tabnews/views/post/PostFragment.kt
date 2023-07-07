@@ -34,7 +34,6 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
             }
 
             override fun onVote(vote: TipoVoteEnum, posicao: Int) {
-                if (vote == TipoVoteEnum.CREDITO) bnd.confeti.start(party)
                 vm.upDownVote(autor = args.autor, slug = args.slug, tipo = vote, posicao = posicao)
             }
 
@@ -75,12 +74,15 @@ class PostFragment: BaseFragment<FragmentPostBinding>() {
 
     override fun setupUiState() {
         vm.uiState.observe(viewLifecycleOwner) { uiState ->
-            when(uiState) {
+            when (uiState) {
                 is PostUiState.Sucesso -> respostasAdapter.definirConteudo(uiState.conteudos)
-                is PostUiState.SucessoVote -> respostasAdapter.atualizarTabCoins(
-                    posicao = uiState.posicao,
-                    novoValor = uiState.tabcoins
-                )
+                is PostUiState.SucessoVote -> {
+                    respostasAdapter.atualizarTabCoins(
+                        posicao = uiState.posicao,
+                        novoValor = uiState.tabcoins
+                    )
+                    if (uiState.tipoVote == TipoVoteEnum.CREDITO) bnd.confeti.start(party)
+                }
 
                 is PostUiState.Erro -> {}
                 is PostUiState.ErroVote -> Toast.makeText(
